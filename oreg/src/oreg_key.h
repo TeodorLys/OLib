@@ -4,45 +4,47 @@
 #include <Windows.h>
 #include <typeinfo>
 namespace olib {
-	typedef std::string OREG_STRING;
-	typedef int OREG_INT;
-	typedef bool OREG_BOOL;
-
-	/*
-	These are the type checking for the supported types.
-	The most common ones to use. i.e. the ones I will use...
-	*/
-
-	template<typename T>
-	struct type_name {
-		static constexpr bool is() { return false; }
-		static constexpr const char* get() { return "NULL"; }
-		static T conv(std::string _v) { return T; }
-	};
-
-	template<>
-	struct type_name<OREG_STRING> {
-		static constexpr bool is() { return true; }
-		static constexpr const char* get() { return "string"; }
-		static std::string conv(std::string _v) { return _v; }
-	};
-
-	template<>
-	struct type_name<OREG_INT> {
-		static constexpr bool is() { return true; }
-		static constexpr const char* get() { return "int"; }
-		static int conv(std::string _v) { return std::stoi(_v); }
-	};
-
-	template<>
-	struct type_name<OREG_BOOL> {
-		static constexpr bool is() { return true; }
-		static constexpr const char* get() { return "bool"; }
-		static bool conv(std::string _v) { return std::stoi(_v) > 0 ? true : false; }
-	};
 
 	template<class T>
 	class oreg_key : public key_base {
+	public:
+		typedef std::string OREG_STRING;
+		typedef int OREG_INT;
+		typedef bool OREG_BOOL;
+
+		/*
+		These are the type checking for the supported types.
+		The most common ones to use. i.e. the ones I will use...
+		*/
+
+		template<typename T>
+		struct type_name {
+			static constexpr bool is() { return false; }
+			static constexpr const char* get() { return "NULL"; }
+			static T conv(std::string _v) { return T; }
+		};
+
+		template<>
+		struct type_name<OREG_STRING> {
+			static constexpr bool is() { return true; }
+			static constexpr const char* get() { return "string"; }
+			static std::string conv(std::string _v) { return _v; }
+		};
+
+		template<>
+		struct type_name<OREG_INT> {
+			static constexpr bool is() { return true; }
+			static constexpr const char* get() { return "int"; }
+			static int conv(std::string _v) { return std::stoi(_v); }
+		};
+
+		template<>
+		struct type_name<OREG_BOOL> {
+			static constexpr bool is() { return true; }
+			static constexpr const char* get() { return "bool"; }
+			static bool conv(std::string _v) { return std::stoi(_v) > 0 ? true : false; }
+		};
+
 	private:
 		std::string path = ""; // The full path to the key(excluding the name)
 		std::string subkey = ""; // Just the keyname

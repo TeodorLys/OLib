@@ -5,6 +5,10 @@ namespace olib {
 
 	class key_base;
 	class oreg {
+	public:
+		typedef std::string OREG_STRING;
+		typedef int OREG_INT;
+		typedef bool OREG_BOOL;
 	private:
 	public:
 		enum keys {
