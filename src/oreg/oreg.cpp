@@ -152,7 +152,7 @@ namespace olib {
 	}
 
 	bool oreg::write_string(std::string sub, HKEY _key, std::string data) {
-		long result = RegSetValueExA(_key, sub.c_str(), 0, REG_SZ, (BYTE*)data.c_str(), data.size());
+		long result = RegSetValueExA(_key, sub.c_str(), 0, REG_SZ, (BYTE*)data.c_str(), (DWORD)data.size());
 		_print_if_error(result);
 		if (result == ERROR_SUCCESS) {
 			return true;

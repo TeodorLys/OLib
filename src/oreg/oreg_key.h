@@ -105,7 +105,7 @@ namespace olib {
 		}
 		/*//*/
 		/*
-		Except for these! this is where the "user" sets the value if you want to overwrite the regkey
+		Except for these! this is where the "user" sets the value if you want to write the regkey
 		*/
 		void set_value(std::string v) {
 			_v = v;
@@ -115,6 +115,26 @@ namespace olib {
 			_v = std::to_string(v);
 		}
 		/*//*/
+
+		oreg_key operator=(OREG_STRING s) {
+			static_assert(type_name<T>::get() == "string", "[OREG] Was declared as a int");
+			_v = s;
+		}
+
+		oreg_key operator=(OREG_INT i) {
+			static_assert(type_name<T>::get() == "int", "[OREG] Was declared as a string");
+			_v = std::to_string(i);
+		}
+
+		operator int() const {
+			static_assert(type_name<T>::get() == "int", "[OREG] Was declared as a string");
+			return std::stoi(_v);
+		}
+
+	  operator std::string() const {
+			static_assert(type_name<T>::get() == "string", "[OREG] Was declared as a int");
+			return _v;
+		}
 
 	private:
 
