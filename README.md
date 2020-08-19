@@ -3,7 +3,7 @@
  </p>
 
 # OLib
-Just a collection of libraries i have created, olib, own libraray...
+Just a collection of libraries i have created, olib, own library...
 # OREG
 This is a library for managing registry keys in windows.
 You can Create/Write, Read and check if it exists.
