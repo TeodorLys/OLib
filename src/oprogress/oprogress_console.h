@@ -10,8 +10,8 @@ namespace olib {
 		std::string _visual = "[                                                  ]";
 	public:
 		oprogress_console range(float from, float to) { _from = from; _to = to; return *this; }
-		void update(int _v, std::string overwrite = "") { val = _v; thread_helper(overwrite); }
+		void update(int _v, std::string overwrite = "") { val = _v; helper(overwrite); }
 	private:
-		void thread_helper(std::string overwrite);
+		void helper(std::string overwrite);
 	};
 }

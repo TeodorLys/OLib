@@ -6,7 +6,7 @@ namespace olib {
 	/*
 	PRIVATE
 	*/
-	void oprogress_console::thread_helper(std::string overwrite) {
+	void oprogress_console::helper(std::string overwrite) {
 		static float last = oanimate::map(val, _from, _to, 0, 50);
 		int current = oanimate::map(val, _from, _to, 1, 50);
 		if (last != current) {
